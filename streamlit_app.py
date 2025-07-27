@@ -3,14 +3,13 @@ import numpy as np
 from tensorflow.keras.models import load_model
 import pickle
 
-# load model and scaler
-model = load_model("heart_mlp_model.h5")
+# load cleaned model and scaler
+model = load_model("clean_heart_model.h5", compile=False)
 
 with open("scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
 
 st.title("🫀 Heart Failure Prediction App")
-
 st.write("Enter clinical data to predict the risk of death event.")
 
 # input fields based on dataset
@@ -27,7 +26,7 @@ sex = st.selectbox("Sex (1 = Male, 0 = Female)", [0, 1])
 smoking = st.selectbox("Smoking (1 = Yes, 0 = No)", [0, 1])
 time = st.slider("Follow-up period (days)", 0, 300, 100)
 
-# build input array
+# prepare input
 input_data = np.array([[age, anaemia, creatinine_phosphokinase, diabetes, ejection_fraction,
                         high_blood_pressure, platelets, serum_creatinine, serum_sodium,
                         sex, smoking, time]])
