@@ -4,7 +4,7 @@ from tensorflow.keras.models import load_model
 import pickle
 
 # load cleaned model and scaler
-model = load_model("clean_heart_model.h5", compile=False)
+model = load_model("clean_heart_model.h5")
 
 with open("scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
